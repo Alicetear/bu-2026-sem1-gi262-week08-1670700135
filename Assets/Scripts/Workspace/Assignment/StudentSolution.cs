@@ -9,16 +9,14 @@ namespace Assignment
 
         public int LCT01_RecursiveFactorial(int n)
         {
-            return Factorial(n);
+            return Factorial(n); 
         }
 
         private int Factorial(int n)
         {
-            // base case
-
-            // recursive case
-
-            return -1;
+            // factorial(5) = 5 * 4 .. 1 -> 5 * fact(4)
+            if (n == 1) return 1; //base case
+            return Factorial(n); //recursive case
         }
 
         public int LCT02_RecursiveFibonacci(int n)
@@ -29,24 +27,34 @@ namespace Assignment
         private int Fibonacci(int n)
         {
             // base case
+            if (n == 0) return 0; // base case
+            if (n == 1) return 1; // base case
 
             // recursive case
-
-            return -1;
+            // fib(5) = fib(4) + fib(3)
+            // fib(4) = fib(3) + fib(2)
+            // fib(2) = fib(1) + fib(0)
+            // fib(n) = fib(n-1) + fib(n-2)
+            return Fibonacci(n - 1) + Fibonacci(n - 2); // recursive case
         }
 
         public int LCT03_RecursiveSumOfOneToN(int n)
         {
+            // n = 5 -> 5 + 4 + 3 + 2 + 1
+            //       -> 5 + sum(4)
+            
             return SumOfOneToN(n);
         }
 
         private int SumOfOneToN(int n)
         {
             // base case
+            // if (n == 0) return 0;
+            // if (n == 1) return 1;
+            if (n <= 1) return n;
 
             // recursive case
-
-            return -1;
+            return n + SumOfOneToN(n - 1);
         }
 
         public int LCT04_RecursiveSumOfNumbers(int[] numbers)
@@ -56,11 +64,16 @@ namespace Assignment
 
         private int SumOfNumbers(int[] numbers, int index)
         {
+            // numbers = [1, 2, 3, 4, 5]
+            // sum = numbers[0] + numbers[1] + ... + numbers[4]
+            // sum = numbers[n-1] + numbers[n-2] + ... + numbers[0]
+            // sum = numbers[n-1] + sum(n-2)
+
             // base case
+            if (index >= numbers.Length) return 0;
 
             // recursive case
-
-            return -1;
+            return numbers[index] + SumOfNumbers(numbers, index + 1);
         }
 
         #endregion
